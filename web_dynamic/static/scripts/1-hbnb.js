@@ -1,12 +1,16 @@
 $(document).ready(function () {
   // Define an object to hold the checked Amenity IDs
-
+  $('div.amenities .popover ul li input[type="checkbox"]').css({
+    position: 'relative',
+    right: '10px'
+  });
   const checkedAmenities = {};
   // Listen for changes on each checkbox with a class 'amenity-checkbox'
   $('div.amenities .popover ul li input[type="checkbox"]').change(function () {
     // Get the Amenity ID from the data-id attribute
     const amenityId = $(this).data('id');
     const amenityName = $(this).data('name');
+
     //   console.log(amenitiesList)
     // If the checkbox is checked, add the Amenity ID to the object
     if ($(this).is(':checked')) {
