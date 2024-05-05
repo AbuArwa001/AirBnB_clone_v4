@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const baseUrl = 'http://0.0.0.0:5001/api/v1/';
+  const baseUrl = 'http://localhost:5001/api/v1/';
 
   $.ajax({
     url: baseUrl + 'places_search/',
@@ -57,6 +57,26 @@ $(document).ready(function () {
       delete checkedAmenities[amenityId];
     }
     const amenitiesList = Object.values(checkedAmenities).join(', ');
-    $('.amenities h4').text('Checked amenities: ' + amenitiesList);
+    $('.amenities h4').text(amenitiesList);
+  });
+
+  $('button').click(function () {
+    // const amenitiesList = Object.values(checkedAmenities).join(', ');
+    // $('.amenities h4').text('Checked amenities: ' + amenitiesList);
+
+    // Make the POST request with the checked amenities
+    $.ajax({
+      url: baseUrl + 'places_search/',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ amenities: checkedAmenities }),
+      success: function (data) {
+        console.log(data);
+        // Handle success
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log('Error:3', textStatus, errorThrown);
+      }
+    });
   });
 });
